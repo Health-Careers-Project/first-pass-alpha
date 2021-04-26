@@ -1,0 +1,41 @@
+table, tr, td{
+  border: 1px solid black;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor:pointer;
+}
+
+table{
+  background-color: black;
+}
+
+th,tr,td{
+  background-color:rgb(220,220,220);
+  min-width: 40px;
+}
+
+input#contentEditor{
+  width:100px
+}
+
+#title{
+  color:black;
+  font-size:60px;
+  font-family:Arial, Helvetica, sans-serif;
+  text-align:center;
+  font-weight:bold;
+}
+
+#all{
+  background-image: url();
+  background-color:rgb(200,200,200);
+}
+
+.key{
+  margin-left: auto;
+  margin-right: 0%;
+  text-align: center;
+}
+
+#healthtable{
+  text-align:center;
+}
