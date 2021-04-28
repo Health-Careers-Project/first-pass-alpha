@@ -15,6 +15,11 @@ var h = d.getHours();
 var mn = d.getMinutes()
 var time = "".concat(h,"-",mn)
 var datetime = "".concat(date," ",time)
+var oldfile = 0;
+let name = ''
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+let month = months[m]
+let year = d.getFullYear()
 var operation = ['WEIGHT', 'HEIGHT', "BLOOD PRESSURE", 'TEMPERATURE', 'PULSE', 'RESPIRATION', 'DIET (% CONSUMED)', 'POSITIONING', 'TRANSFER', 'NAIL CARE', 'BATHING', 'CATHETER CARE', 'HAIR CARE', 'ROM EXERCISES', 'ORAL HYGIENE', 'UNDRESSING', 'DRESSING', 'COMMODE', 'PERINEAL CARE', 'SKIN CARE', 'BED PAN', 'INITIALS'];
 const iadOps = [8,9,10,11,12,13,14,15,16,17,18,19,20,21]
 const apOps = [];
@@ -43,6 +48,8 @@ for (var i=0; i < days + 1; i++) {
     header.className = 'day';
   }
 }
+document.getElementById('month').value = months[m]
+document.getElementById('year').value = d.getFullYear()
 
 for (var i2=0; i2 < numofrows; i2++) {
   r = table.insertRow(i2 + 1)
@@ -75,6 +82,7 @@ function editCell(row,day){
       }else{
         table.rows[row].cells[day].innerHTML = 'I'
       }
+      table.rows[row].cells[day].className = 'noselect'
     }else if(row == 7){
       clearSelection();
       if(table.rows[row].cells[day].innerHTML == '100%'){
@@ -86,6 +94,7 @@ function editCell(row,day){
       }else{
         table.rows[row].cells[day].innerHTML = '100%'
       }
+      table.rows[row].cells[day].className = 'noselect'
     }else if(row == 14){
       clearSelection();
       if(table.rows[row].cells[day].innerHTML == 'AC'){
@@ -95,6 +104,7 @@ function editCell(row,day){
       }else{
         table.rows[row].cells[day].innerHTML = 'AC'
       }
+      table.rows[row].cells[day].className = 'noselect'
     }else{
       if(selectedDay !== day || selectedRow !== row){
         clearSelection();
@@ -134,6 +144,7 @@ function tableContents(){
     }
   containz+="╣" 
   }
+  containz += "»" + month + "«" + year + '‹' + name
   return containz;
 }
 // ╗ = cell seperator
@@ -145,7 +156,15 @@ function defenitelynotsaveFile(){
   clearSelection()
   updateTable()
   var blob = new Blob([tableContents()], {type: "text/plain;charset=utf-8"});
-  saveAs(blob, datetime)
+  var newmonthsave = months.indexOf(document.getElementById("month").value) + 1;
+  var savename;
+  if (oldfile !== 0){
+    savename = string.concat(newmonthsave, oldfile)
+  }else {
+    savename = datetime
+  }
+
+  saveAs(blob, savename)
 }
 
 function updateTable(){
@@ -154,11 +173,16 @@ function updateTable(){
       info[shift][y][x]= table.rows[y+1].cells[x+1].innerHTML
     }
   }
+  month = document.getElementById('month').value
+  year = document.getElementById('year').value
+  name = document.getElementById('name').value
 }
 function setShift(shiftnew){
   clearSelection();
   updateTable();
   if(shift !== shiftnew){
+    document.getElementById('shift'+shiftnew+'button').className = 'selected'
+    document.getElementById('shift'+shift+'button').className = 'voided'
     shift = shiftnew;
     selectedDay=false;
     selectedRow=false;
@@ -167,18 +191,13 @@ function setShift(shiftnew){
         table.rows[y+1].cells[x+1].innerHTML = info[shift][y][x]
       }
     }
+
   }
 }
 var filename;
 
-reader.onload = function(readerEvt) {
-    filename = readerEvt.target.fileName;
-    console.log(readerEvt.target.fileName);
-};
-
 function importFile(){
-  var fileToRead = document.querySelector('input').files[0];
-
+  var fileToRead = document.getElementById("fileElem").files[0];
   // attach event, that will be fired, when read is end
   reader.addEventListener("loadend", function() {
      // reader.result contains the contents of blob as a typed array
@@ -196,6 +215,10 @@ let x = 0;
 let y = 0;
 let sft = 0;
 let out = [];
+let stage = 'grid'
+name = ''
+month = ''
+year = ''
 for(var s = 0; s<3; s++){
   out.push([])
   for(var l=0;l<22; l++){
@@ -215,8 +238,25 @@ for(var chr=0; chr<code.length;chr++){
       x=0
     }else if(code.charAt(chr) == '╗'){
       x++;
+    }else if(code.charAt(chr) == '»'){
+      //take month
+       stage = 'month'
+    }else if(code.charAt(chr) == '«'){
+      // take year ‹
+      stage = 'year'
+    }else if(code.charAt(chr) == '‹'){
+      // take year 
+      stage = 'name'
     }else{
+      if(stage == 'grid'){
       out[sft][y][x] += code.charAt(chr)
+      } else if(stage == 'month'){
+        month += code.charAt(chr)
+      }else if(stage == 'year'){
+        year += code.charAt(chr)
+      }else if(stage == 'name'){
+        name += code.charAt(chr)
+      }
     }
   }
   for(var l=0;l<22; l++){
@@ -224,6 +264,8 @@ for(var chr=0; chr<code.length;chr++){
       table.rows[l+1].cells[w+1].innerHTML = out[shift][l][w]
     }
   }
+  document.getElementById('month').value = month;
+  document.getElementById('year').value = year;
   info = out;
 }
 

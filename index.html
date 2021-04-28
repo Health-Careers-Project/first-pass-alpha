@@ -13,38 +13,43 @@
     <p id="title">Digital Record / Daily Flow Sheet</p>
        
     <table border ="1" id = "keytable" class = "key">
-      <tr>
+      <tr class="guide">
         <th colspan="3">KEY</th>
       </tr>
-      <tr>
-        <td>I : Independent</td>
-        <td>AC : Active</td>
-        <td>25% : 25% of meal consumed (Diet)</td>
+      <tr class="guide">
+        <td class="guide">I : Independent</td>
+        <td class="guide">AC : Active</td>
+        <td class="guide">25% : 25% of meal consumed (Diet)</td>
       </tr>
-      <tr>
-        <td>A : Assisted</td>
-        <td>P : Passive</td>
-        <td>50% : 50% of meal consumed (Diet)</td>
+      <tr class="guide">
+        <td class="guide">A : Assisted</td>
+        <td class="guide">P : Passive</td>
+        <td class="guide">50% : 50% of meal consumed (Diet)</td>
       </tr>
-      <tr>
-        <td>D : Dependent</td>
-        <td></td>
-        <td>100% : All 100% of meal consumed (Diet)</td>
+      <tr class="guide">
+        <td class="guide">D : Dependent</td>
+        <td class='blank'></td>
+        <td class="guide">100% : All 100% of meal consumed (Diet)</td>
       </tr>
     </table>
-     <button onclick="setShift(0)" class="shiftsetter" id = "uno">11-7</button>
-    <button onclick="setShift(1)" class="shiftsetter">7-3</button>
-    <button onclick="setShift(2)" class="shiftsetter">3-11</button>
+    Name: <input type="text" id="name">
+    Month: <input type="text" id="month"> 
+    Year: <input type="text" id="year">
+    <br><br>
+    <div class='buttonstop'><button onclick="setShift(0)" class="selected" id = "shift0button">11-7</button>
+    <button onclick="setShift(1)" class="shiftsetter" id="shift1button">7-3</button>
+    <button onclick="setShift(2)" class="shiftsetter" id = "shift2button">3-11</button></div>
     <table border="1" id = "healthtable">
    
     </table>
      <script src="script.js"></script>
-    <button onclick="clearSelection()">Clear Selection</button>
-    <button onclick="defenitelynotsaveFile()">Save File</button>
-    <input type="file" id="fileElem" style="display:none" onchange="importFile()" accept=".txt">
-    <button id="fileSelect">Import File</button>
-    <button onclick="instructions()">Show/Hide Instructions</button>
-    <br>
+    <div class='buttonstop'>
+      <button id="fileSelect">Import File</button>
+      <button onclick="defenitelynotsaveFile()">Save File</button>
+      <input type="file" id="fileElem" style="display:none" onchange="importFile()" accept=".txt"><br>
+      <button onclick="clearSelection()">Clear Selection</button>
+      <button onclick="instructions()">Show/Hide Instructions</button>
+    </div>
     <p id="instructions"></p>
     <script src = "script2.js"></script>
 
