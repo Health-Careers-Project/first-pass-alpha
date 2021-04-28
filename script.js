@@ -42,6 +42,7 @@ for (var i=0; i < days + 1; i++) {
   row.appendChild(header);
   if (i === 0) {
     header.innerHTML = 'DATE';
+    header.className = 'guide'
   } 
   else {
     header.innerHTML = i;
@@ -57,6 +58,7 @@ for (var i2=0; i2 < numofrows; i2++) {
     c = r.insertCell(i3)
     if (i3 === 0) {
       c.innerHTML = operation[i2]
+      c.className = 'guide'
       if(iadOps.includes(i2+1) && i2 !==13){
        // c.innerHTML += '<br> IAD'
       } else if(i2 == 13){
@@ -65,6 +67,7 @@ for (var i2=0; i2 < numofrows; i2++) {
     }
     else {
       c.innerHTML = '' 
+      c.className = 'noselect'
       c.setAttribute( "onClick", "javascript: editCell("+(i2+1)+","+i3+");" )
     }
   }
@@ -82,7 +85,6 @@ function editCell(row,day){
       }else{
         table.rows[row].cells[day].innerHTML = 'I'
       }
-      table.rows[row].cells[day].className = 'noselect'
     }else if(row == 7){
       clearSelection();
       if(table.rows[row].cells[day].innerHTML == '100%'){
@@ -94,7 +96,6 @@ function editCell(row,day){
       }else{
         table.rows[row].cells[day].innerHTML = '100%'
       }
-      table.rows[row].cells[day].className = 'noselect'
     }else if(row == 14){
       clearSelection();
       if(table.rows[row].cells[day].innerHTML == 'AC'){
@@ -104,11 +105,12 @@ function editCell(row,day){
       }else{
         table.rows[row].cells[day].innerHTML = 'AC'
       }
-      table.rows[row].cells[day].className = 'noselect'
     }else{
       if(selectedDay !== day || selectedRow !== row){
         clearSelection();
       table.rows[row].cells[day].innerHTML = "<input id=\"contentEditor\" value=\""+table.rows[row].cells[day].innerHTML+"\" type=\"text\" autocomplete=\"off\">"
+      document.getElementById('contentEditor').focus();
+      document.getElementById('contentEditor').select();
       }
     }
   
@@ -276,4 +278,27 @@ function instructions(){
   }else{
     para.innerHTML = "How to Use Online Record / Daily Flow Sheet:<br> To use this online table, simply click a box, a area that you can type in will show up, which you can then type in to write into the table. When you finish writing, hit the Clear Selection button or click on any other box in the document to store it into the table. On the top left of the screen, you will see three buttons representing three different shifts. You can click each of these to switch to another table which stores information for that shift. When finished, click the Save File button to download a copy to your computer. You can then share that file with whoever needs to see it, and to import a file, simply click the Import File button, and select the file.";
   }
+}
+
+function newFile(){
+  if(confirm('Are you sure you want to start a new file? Your information will be lost if you haven\'t saved.')){
+    document.getElementById('name').value = '';
+    document.getElementById('month').value = months[m];
+    document.getElementById('year').value = d.getFullYear();
+    //setup info
+    info = []
+    for(var s = 0; s<3; s++){
+    info.push([])
+    for(var y=0;y<22; y++){
+      info[s].push([])
+      for(var x=0; x<31; x++){
+        info[s][y].push(" ")
+      }
+    }
+    }
+    for(var x = 0; x<31; x++){
+        for(var y = 0; y<22; y++){
+          table.rows[y+1].cells[x+1].innerHTML = ''
+      }
+    }}
 }

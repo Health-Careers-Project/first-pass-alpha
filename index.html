@@ -33,7 +33,7 @@
       </tr>
     </table>
     <br>
-    Name: <input type="text" id="name">
+    Patient Name: <input type="text" id="name">
     Month: <input type="text" id="month"> 
     Year: <input type="text" id="year">
     <br><br>
@@ -47,8 +47,8 @@
     <div class='buttonstop'>
       <button id="fileSelect">Import File</button>
       <button onclick="defenitelynotsaveFile()">Save File</button>
-      <input type="file" id="fileElem" style="display:none" onchange="importFile()" accept=".txt"><br>
-      <button onclick="clearSelection()">Clear Selection</button>
+      <input type="file" id="fileElem" style="display:none" onchange="importFile()" accept=".txt"><button onclick="newFile()">New File</button><br>
+      <button onclick="clearSelection()">Clear Grid Selection</button>
       <button onclick="instructions()">Show/Hide Instructions</button>
     </div>
     <p id="instructions"></p>

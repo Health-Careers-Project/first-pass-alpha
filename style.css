@@ -1,6 +1,9 @@
 table, tr, td{
   border: 1px solid black;
+}
+td{
   cursor:pointer;
+  background-color:white;
 }
 
 table{
@@ -10,6 +13,7 @@ table{
 th,tr,td{
   background-color:rgb(220,220,220);
   min-width: 40px;
+  min-height:30px;
 }
 
 input#contentEditor{
@@ -47,7 +51,7 @@ button{
   width:100px;
   height:40px;
 }
-button.selected, #year, #month, #name{
+button.selected{
   background-color:#ff6666;
 }
 #month, #year, #name{
@@ -77,4 +81,11 @@ td.blank{
 }
 td.guide, tr.guide, table.key{
   cursor: default;
+  
+}
+td.guide, th.guide{
+  background-color: rgb(180,180,180);
+}
+.day{
+  background-color:rgb(180,180,180);
 }
