@@ -52,7 +52,7 @@ button{
   height:40px;
 }
 button.selected{
-  background-color:#00ff00;
+  background-color:#ff6666;
 }
 #month, #year, #name{
   border:2px solid black;
