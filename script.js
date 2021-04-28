@@ -108,7 +108,7 @@ function editCell(row,day){
     }else{
       if(selectedDay !== day || selectedRow !== row){
         clearSelection();
-      table.rows[row].cells[day].innerHTML = "<input id=\"contentEditor\" value=\""+table.rows[row].cells[day].innerHTML+"\" type=\"text\">"
+      table.rows[row].cells[day].innerHTML = "<input id=\"contentEditor\" value=\""+table.rows[row].cells[day].innerHTML+"\" type=\"text\" autocomplete=\"off\">"
       }
     }
   

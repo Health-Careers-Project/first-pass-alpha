@@ -1,6 +1,5 @@
 table, tr, td{
   border: 1px solid black;
-  font-family: Arial, Helvetica, sans-serif;
   cursor:pointer;
 }
 
@@ -20,11 +19,13 @@ input#contentEditor{
 #title{
   color:black;
   font-size:60px;
-  font-family:Arial, Helvetica, sans-serif;
+  
   text-align:center;
   font-weight:bold;
 }
-
+html{
+  font-family: Garamond ;
+}
 #all{
   background-image: url();
   background-color:rgb(200,200,200);
@@ -42,14 +43,13 @@ input#contentEditor{
 
 button{
   outline: 2px solid black;
-  background-color:gray;
+  background-color:#b50000;
   width:100px;
   height:40px;
 }
-button.selected{
-  background-color:rgb(194, 194, 171);
+button.selected, #year, #month, #name{
+  background-color:#ff6666;
 }
-
 #month, #year, #name{
   border:2px solid black;
 }
