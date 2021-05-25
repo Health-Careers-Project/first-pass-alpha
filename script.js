@@ -302,3 +302,75 @@ function newFile(){
       }
     }}
 }
+function fprint(){
+  clearSelection();
+  updateTable();
+  let body = document.body.innerHTML
+  let printput = ''
+  // set body to the right stuff
+  printput += "Patient Name: <input type=\"text\" id=\"name\" value=\""+name+"\">";
+  printput += "  Month: <input type=\"text\" id=\"month\" value=\""+month+"\">";
+  printput += "  Year: <input type=\"text\" id=\"year\" value=\""+year+"\">";
+  printput += "<table><tr><th>DATE</th>"
+
+  for(var y = 0; y<31;y++){
+  printput+="<th><b>"+y+"</b></th>"
+  }
+  printput +="</tr>"
+  //11-7
+  for(var y = 0; y<22;y++){
+    printput += "<tr>"
+
+    for(var x = 0; x<31; x++){
+      if(y > 0 && x > 0){
+      printput += "<td>"+info[0][y][x]+"</td>"
+      }
+      else if(y == 0){
+        
+      }else{
+        console.log(printput)
+        printput += "<th>"+operation[y]+"(11-7)</th>"
+      }
+    }
+    printput +=" </tr>"
+  }
+  //7-3
+  for(var y = 0; y<22;y++){
+    printput += "<tr>"
+
+    for(var x = 0; x<31; x++){
+      if(y > 0 && x > 0){
+      printput += "<td>"+info[1][y][x]+"</td>"
+      }
+      else if(y == 0){
+        
+      }else{
+        console.log(printput)
+        printput += "<th>"+operation[y]+"(7-3)</th>"
+      }
+    }
+    printput +=" </tr>"
+  }
+  //3-11
+  for(var y = 0; y<22;y++){
+    printput += "<tr>"
+
+    for(var x = 0; x<31; x++){
+      if(y > 0 && x > 0){
+      printput += "<td>"+info[2][y][x]+"</td>"
+      }
+      else if(y == 0){
+        
+      }else{
+        console.log(printput)
+        printput += "<th>"+operation[y]+"(3-11)</th>"
+      }
+    }
+    printput +=" </tr>"
+  }
+  printput +="</table>"
+  
+  document.body.innerHTML = printput
+  window.print()
+  document.body.innerHTML = body
+}
