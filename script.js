@@ -311,7 +311,7 @@ function fprint(){
   printput += "Patient Name: <input type=\"text\" id=\"name\" value=\""+name+"\">";
   printput += "  Month: <input type=\"text\" id=\"month\" value=\""+month+"\">";
   printput += "  Year: <input type=\"text\" id=\"year\" value=\""+year+"\">";
-  printput += "<table><tr><th>DATE</th>"
+  printput += "<table id=\"print\"><tr><th>DATE</th>"
 
   for(var y = 0; y<31;y++){
   printput+="<th><b>"+y+"</b></th>"
@@ -333,9 +333,6 @@ function fprint(){
       }
     }
     printput +=" </tr>"
-  }
-  //7-3
-  for(var y = 0; y<22;y++){
     printput += "<tr>"
 
     for(var x = 0; x<31; x++){
@@ -350,9 +347,6 @@ function fprint(){
       }
     }
     printput +=" </tr>"
-  }
-  //3-11
-  for(var y = 0; y<22;y++){
     printput += "<tr>"
 
     for(var x = 0; x<31; x++){
@@ -372,5 +366,4 @@ function fprint(){
   
   document.body.innerHTML = printput
   window.print()
-  document.body.innerHTML = body
 }

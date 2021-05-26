@@ -89,3 +89,12 @@ td.guide, th.guide{
 .day{
   background-color:rgb(180,180,180);
 }
+table#print{
+  background-color:black;
+}
+table#print > tr > td{
+  background-color:black;
+}
+table#print > tr{
+  background-color:black;
+}
